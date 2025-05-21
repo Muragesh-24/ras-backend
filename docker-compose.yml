@@ -22,7 +22,7 @@ services:
     networks:
       - default
     ports:
-      - "80"
+      - "80:80"
 volumes:
   data:
 # network with subnet configuration
