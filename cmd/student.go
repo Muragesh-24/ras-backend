@@ -23,6 +23,7 @@ func studentServer(mail_channel chan mail.Mail) *http.Server {
 	student.StudentRouter(engine)
 	rc.StudentRouter(engine)
 	application.StudentRouter(mail_channel, engine)
+	application.MagicSheetRouter(engine)
 
 	server := &http.Server{
 		Addr:         ":" + PORT,

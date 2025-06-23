@@ -1,6 +1,8 @@
 package application
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"github.com/spo-iitk/ras-backend/mail"
 )
@@ -121,4 +123,14 @@ func PvfVerificationRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		// pvf.PUT("pvf/:pid/verify", verifyPvfHandler)
 		pvf.PUT("/pvf", putPVFHandler(mail_channel))
 	}
+}
+
+func MagicSheetRouter(r *gin.Engine) {
+    fmt.Println("🚀 MagicSheetRouter mounted")
+
+    magicSheet := r.Group("/api/coco/:cocoID/magic-sheet")
+    {
+        magicSheet.GET("", GetMagicSheetData)
+        magicSheet.PUT("/:id", UpdateMagicSheetData)
+    }
 }
