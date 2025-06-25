@@ -10,7 +10,7 @@ tx := db.WithContext(ctx).Create(magicsheetdata)
 	return tx.Error
 }
 
-
+/////////////////////////////
 func FetchMagicSheetDataForCoco(ctx *gin.Context,id uint,CocoData * []MagicSheet) error  {
 
 	tx := db.WithContext(ctx).Where("CocoID = ?", id).Order("sequence").Find(CocoData)
