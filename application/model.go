@@ -3,8 +3,7 @@ package application
 import (
 	"database/sql"
 
-	"github.com/spo-iitk/ras-backend/auth"
-	"github.com/spo-iitk/ras-backend/rc"
+	
 	"gorm.io/gorm"
 )
 
@@ -114,18 +113,16 @@ type EventCoordinator struct {
 
 type MagicSheet struct {
 	gorm.Model
-	StudentID   uint     `json:"student_id" gorm:"index;->;<-:create"`
-	Student     auth.User `json:"-" gorm:"foreignkey:StudentID"`
-	RCID        uint     `json:"rc_id" gorm:"index;->;<-:create"`
-	Rc          rc.RecruitmentCycle `json:"-" gorm:"foreignkey:RCID"`
-	ProformaID  uint     `json:"proforma_id" gorm:"index;->;<-:create"`
-	Proforma    Proforma `json:"-" gorm:"foreignkey:ProformaID"`
-	CocoID      uint     `json:"coco_id" gorm:"index;->;<-:create"`
-	Coco        auth.User `json:"-" gorm:"foreignkey:CocoID"`
-	R1InTime    string   `json:"r1_in_time"`
-	R1OutTime   string   `json:"r1_out_time"`
-	Comments    string   `json:"comments"`
-	Status      string   `gorm:"type:text;not null" json:"status"`
+	StudentID   							uint     	`json:"student_id" gorm:"index;->;<-:create"`
+	ProformaID  							uint      				`json:"proforma_id" gorm:"index;->;<-:create"`
+	ProForma    							Proforma  				`gorm:"foreignKey:ProformaID"`
+	RecruitmentCycleID        uint         						`json:"recruitment_cycle_id" gorm:"index;->;<-:create"`
+	CocoID     								uint     						  `json:"coco_id" gorm:"index;->;<-:create"`
+	R1InTime    							string    						`json:"r1_in_time"`
+	R1OutTime   							string    							`json:"r1_out_time"`
+	Comments    							string  							  `json:"comments"`
+	Status      							string   								`gorm:"type:text; not null" json:"status"`
+
 }
 
 
