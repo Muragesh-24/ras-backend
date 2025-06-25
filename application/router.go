@@ -126,7 +126,7 @@ func PvfVerificationRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 }
 
 func MagicSheetRouter(r *gin.Engine) {
-    fmt.Println("🚀 MagicSheetRouter mounted")
+    fmt.Println(" MagicSheetRouter mounted")
 
     magicSheet := r.Group("/api/coco/:cocoID/magic-sheet")
     {
