@@ -115,7 +115,7 @@ type MagicSheet struct {
 	gorm.Model
 	StudentID   							uint     	`json:"student_id" gorm:"index;->;<-:create"`
 	ProformaID  							uint      				`json:"proforma_id" gorm:"index;->;<-:create"`
-	ProForma    							Proforma  				`gorm:"foreignKey:ProformaID"`
+	
 	RecruitmentCycleID        uint         						`json:"recruitment_cycle_id" gorm:"index;->;<-:create"`
 	CocoID     								uint     						  `json:"coco_id" gorm:"index;->;<-:create"`
 	R1InTime    							string    						`json:"r1_in_time"`

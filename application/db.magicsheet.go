@@ -1,7 +1,10 @@
 package application
 
-import ("github.com/gin-gonic/gin"
-"gorm.io/gorm/clause"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+	"gorm.io/gorm/clause"
 )
 
 
@@ -13,18 +16,19 @@ tx := db.WithContext(ctx).Create(magicsheetdata)
 /////////////////////////////
 func FetchMagicSheetDataForCoco(ctx *gin.Context,id uint,CocoData * []MagicSheet) error  {
 
-	tx := db.WithContext(ctx).Where("CocoID = ?", id).Order("sequence").Find(CocoData)
+	tx := db.WithContext(ctx).Where("coco_id = ?", id).Find(CocoData)
 	return tx.Error
 
 }
 func FetchMagicSheetData(ctx *gin.Context,CocoData * []MagicSheet) error  {
 
-	tx := db.WithContext(ctx).Order("sequence").Find(CocoData)
+	tx := db.WithContext(ctx).Find(CocoData)
 	return tx.Error
 
 }
 func UpdateMagicSheetTimes(ctx *gin.Context, data MagicSheetUpdateInput, id uint) error {
-	tx := db.WithContext(ctx).
+	fmt.Println(data.R1InTime, data.R1OutTime, data.Status, id)
+tx := db.WithContext(ctx).
 		Model(&MagicSheet{}).
 		Where("id = ?", id).
 		Updates(map[string]interface{}{
@@ -32,6 +36,8 @@ func UpdateMagicSheetTimes(ctx *gin.Context, data MagicSheetUpdateInput, id uint
 			"r1_out_time": data.R1OutTime,
 			"status":      data.Status,
 		})
+
+
 	return tx.Error
 }
 

@@ -34,13 +34,13 @@ type MagicSheetUpdateInput struct {
 //2nd route: /api/coco/magic-sheet/:id
 func UpdateMagicSheetData(ctx *gin.Context) {
 	idParam := ctx.Param("id")
-	idUint64, err := util.ParseUint(idParam)
+	id, err := util.ParseUint(idParam)
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
 		return
 	}
 
-	id := uint(idUint64)
+	
 
 
 	var input MagicSheetUpdateInput
