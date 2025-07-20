@@ -8,6 +8,7 @@ import (
 )
 
 
+
 func CreateMagicSheetData(ctx *gin.Context,magicsheetdata * MagicSheet) error{
 tx := db.WithContext(ctx).Create(magicsheetdata)
 	return tx.Error
@@ -20,12 +21,17 @@ func FetchMagicSheetDataForCoco(ctx *gin.Context,id uint,CocoData * []MagicSheet
 	return tx.Error
 
 }
-func FetchMagicSheetData(ctx *gin.Context,CocoData * []MagicSheet) error  {
+func FetchMagicSheetData(ctx *gin.Context,id uint,Data * []MagicSheet) error  {
 
-	tx := db.WithContext(ctx).Find(CocoData)
+	tx := db.WithContext(ctx).Where("rc_id=?",id).Find(Data)
 	return tx.Error
 
 }
+func FetchComanyMagicSheetData(ctx *gin.Context, pids []uint, data *[]MagicSheet) error {
+	tx := db.WithContext(ctx).Where("proforma_id IN ?", pids).Find(data)
+	return tx.Error
+}
+
 func UpdateMagicSheetTimes(ctx *gin.Context, data MagicSheetUpdateInput, id uint) error {
 	fmt.Println(data.R1InTime, data.R1OutTime, data.Status, id)
 tx := db.WithContext(ctx).
@@ -50,8 +56,8 @@ func UpdateMagicSheetFull(ctx *gin.Context, data *MagicSheet) error {
 	return tx.Error
 }
 
-func DeleteMagicSheetData(ctx *gin.Context, data *MagicSheet) error {
-	tx := db.WithContext(ctx).Where("id = ?", data.ID).Delete(&MagicSheet{})
+func DeleteMagicSheetData(ctx *gin.Context, id uint) error {
+	tx := db.WithContext(ctx).Where("id = ?", id).Delete(&MagicSheet{})
 	return tx.Error
 }
 
