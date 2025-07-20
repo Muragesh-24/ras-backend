@@ -35,6 +35,8 @@ func fetchProformasByCompanyForAdmin(ctx *gin.Context, cid uint, jps *[]Proforma
 	return tx.Error
 }
 
+
+
 func fetchProformaForCompany(ctx *gin.Context, pid uint, cid uint, jp *Proforma) error {
 	tx := db.WithContext(ctx).Where("id = ? AND company_recruitment_cycle_id=?", pid, cid).
 		Select(

@@ -1,8 +1,9 @@
 package application
 
 import (
-	"fmt"
+
 	"net/http"
+     
 
 	"github.com/gin-gonic/gin"
 	"github.com/spo-iitk/ras-backend/util"
@@ -76,7 +77,8 @@ func updateMagicSheetHandler(ctx *gin.Context) {
 	err := UpdateMagicSheetFull(ctx, &sheet)
 	if err != nil {
 		ctx.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "Failed to update magic sheet"})
-		fmt.Println(err)
+
+
 		return
 	}
 
