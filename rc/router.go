@@ -23,6 +23,8 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.DELETE("/notice/:nid", deleteNoticeHandler)
 
 		admin.GET("/company", getAllCompaniesHandler)
+	
+		
 		admin.POST("/company", postNewCompanyHandler)
 		admin.PUT("/company", putCompanyHandler)
 		admin.GET("/company/:cid", getCompanyHandler)
