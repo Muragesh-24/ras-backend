@@ -41,6 +41,9 @@ func openConnection() {
 
 	logrus.Info("Connected to student database")
 }
+func GetDB() *gorm.DB {
+	return db
+}
 
 func init() {
 	openConnection()

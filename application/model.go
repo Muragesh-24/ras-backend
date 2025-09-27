@@ -152,7 +152,7 @@ type MagicSheet struct {
 	StudentID  uint `json:"student_id" gorm:"index;->;<-:create"`
 	ProformaID uint `json:"proforma_id" gorm:"index;->;<-:create"`
 
-	RecruitmentCycleID uint `json:"recruitment_cycle_id" gorm:"index;->;<-:create"`
+RecruitmentCycleID uint `json:"recruitment_cycle_id" gorm:"column:recruitment_cycle_id;index;->;<-:create"`
 	CocoID             uint `json:"coco_id" gorm:"index;<-:create,update"`
 
 	R1InTime  string `json:"r1_in_time"`

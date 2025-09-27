@@ -19,7 +19,14 @@ func fetchUser(ctx *gin.Context, user *User, userID string) error {
 	tx := db.WithContext(ctx).Where("user_id = ?", userID).First(&user)
 	return tx.Error
 }
-
+func FetchUser(ctx *gin.Context, user *User, userID string) error {
+	tx := db.WithContext(ctx).Where("user_id = ?", userID).First(user)
+	return tx.Error
+}
+func FetchUserByid(ctx *gin.Context, user *User, userID uint) error {
+	tx := db.WithContext(ctx).Where("id = ?", userID).First(user)
+	return tx.Error
+}
 // Admin refers to the user with roleID >= 100
 
 func fetchAdminDetailsById(ctx *gin.Context, user *User, ID string) error {

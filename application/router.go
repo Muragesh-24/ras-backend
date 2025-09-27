@@ -18,6 +18,13 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.DELETE("event/:eid/student", deleteAllStudentsFromEventHandler)
 		admin.DELETE("event/:eid/student/:sid", deleteStudentFromEventHandler)
 
+		admin.GET("/magicsheet", getAllMagicSheetsHandler)
+		admin.POST("/magicsheet/company", getAllCompanyMagicSheetsHandler)
+		admin.POST("/magicsheet/assigncoco", assignCocoHandler)
+		admin.POST("/magicsheet/:pid", addMagicsheetdataHandler)
+		admin.PUT("/magicsheet/Update/", updateMagicSheetHandler)
+		admin.DELETE("/magicsheet/delete/:id", deleteMagicSheetHandler)
+		
 		admin.GET("/pvf", getAllPvfForAdminHandler)
 		admin.PUT("/pvf", putPVFHandlerForAdmin(mail_channel))
 		admin.GET("/pvf/:pid", getPvfForAdminHandler)
@@ -35,6 +42,8 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.PUT("/proforma", putProformaHandler)
 		admin.PUT("/proforma/hide", hideProformaHandler)
 		admin.GET("/view/:sid", viewApplicationsAdminHandler)
+
+	
 
 		proforma := admin.Group("/proforma/:pid")
 		{

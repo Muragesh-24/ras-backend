@@ -94,5 +94,23 @@ func postPPOPIOHandler(ctx *gin.Context) {
 		return
 	}
 
+		///////////////////////////automatic add function///////////
+	var rollNumbers []string
+
+	for _, studentID := range studentIDs {
+		r_no, err := getRollNumberByID(studentID)
+		if err != nil {
+
+			continue
+		}
+		rollNumbers = append(rollNumbers, r_no)
+	}
+
+	if len(rollNumbers) > 0 {
+		err = AddMagicSheetdata(ctx, rollNumbers, rid, event.ProformaID)
+		if err != nil {
+
+		}
+	}
 	ctx.JSON(http.StatusOK, gin.H{"status": "updated student pioppo"})
 }
